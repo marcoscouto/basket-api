@@ -12,11 +12,12 @@ public class Team {
     private String division;
     private String full_name;
     private String name;
+    private String state;
 
     public Team() {
     }
 
-    public Team(String id, String abbreviation, String city, String conference, String division, String full_name, String name) {
+    public Team(String id, String abbreviation, String city, String conference, String division, String full_name, String name, String state) {
         this.id = id;
         this.abbreviation = abbreviation;
         this.city = city;
@@ -24,6 +25,7 @@ public class Team {
         this.division = division;
         this.full_name = full_name;
         this.name = name;
+        this.state = state;
     }
 
     public String getId() {
@@ -80,5 +82,13 @@ public class Team {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 }

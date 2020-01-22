@@ -90,4 +90,25 @@ public class TeamController {
         return ResponseEntity.status(500).body(new HashMap<>().put("error", "Please, contact support"));
     }
 
+    @GetMapping(value = "/teams/state/{state}")
+    public ResponseEntity getByState(@PathVariable String state){
+        String url = "https://free-nba.p.rapidapi.com/teams/";
+        List<Team> teams = new ArrayList<>();
+        try {
+            teamClient.getAllTeams(url).forEach(x -> {
+                    if(x.getState().equalsIgnoreCase(state)) teams.add(x);
+            });
+            if(teams.isEmpty()) {
+                HashMap hm = new HashMap();
+                hm.put("code", 404);
+                hm.put("message", "Not Founded");
+                return ResponseEntity.status(404).body(hm);
+            }
+            return ResponseEntity.ok().body(teams);
+        } catch (ControllerException e){
+            System.out.println(e.getMessage());
+        }
+        return ResponseEntity.status(500).body(new HashMap<>().put("error", "Please, contact support"));
+    }
+
 }
